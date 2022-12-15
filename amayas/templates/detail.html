@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="{% static 'ds/fontawesome/css/all.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'ds/css/templatemo-comparto.css' %}" rel="stylesheet" />
+    <title></title>
+
+</head>
+
+<body>
+
+    <a id="button"><i class="fas fa-angle-up fa-2x"></i></a>
+    <div class="container-fluid">
+        <div class="tm-site-header tm-mb-1">
+
+
+        </div>
+        <section class="tm-mb-1" id="about">
+            <div class="tm-row tm-about-row">
+                <div class="tm-section-1-l">
+                    <img src="{{pr.img.url}}" alt="About image" class="tm-img-responsive">
+                </div>
+
+                <article class="tm-section-1-r tm-bg-color-8">
+                    <h2 class="tm-mb-2 tm-title-color">{{pr.name}}</h2>
+                    <p>price:{{pr.price}} Rs<br>{{pr.desc}}</p>
+                    <p>stock: {{pr.stock}}</p>
+                    {% if pr.stock <= 0 %}
+                    <h1 style="color:red">sorry no stock</h1>
+                     {% else %}
+                   <button type="button" class="btn btn-success"><a href="{% url 'addcart' pr.id %}"  >Add to Cart</a></button>
+
+            {% endif %}
+                </article>
+            </div>
+        </section>
+
+
+
+
+</body>
+</html>
+{% endblock %}

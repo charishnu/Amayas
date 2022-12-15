@@ -1,0 +1,205 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+    <title>AMAYAS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="{% static 'hs/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+    <style>
+    .dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index:10;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+    </style>
+</head>
+<body id="top">
+<div class="bgded overlay"
+     style="background-image:url({% static 'hs/images/demo/backgrounds/nrd-D6Tu_L3chLE-unsplash.jpg' %});">
+
+    <div style="background-color:black" class="wrapper row1">
+        <header id="header" class="hoc clear">
+            <div id="logo" class="fl_left">
+                <!-- ################################################################################################ -->
+                <h1><a href="/"><span style='font-size:50px;'>&#8371;</span>mayas</a></h1>
+                <!-- ################################################################################################ -->
+            </div>
+            <nav id="mainav" class="fl_right">
+                <!-- ################################################################################################ -->
+                <nav id="mainav" class="fl_right">
+                    <!-- ################################################################################################ -->
+                    <ul class="clear">
+                        <li><a href="/">Home</a></li>
+                             {% if user.username %}
+                        <li class="active">{{user.username}}</li>
+
+                        <li><a href="{% url 'logout' %}">log out</a></li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                        <li><a href="{% url 'register' %}">Register</a></li>
+
+                        {% endif %}
+
+                        <li><a href="{% url 'cartdetails' %}"><i style="font-size:24px" class="fa">&#xf07a;</i>&nbsp;
+                            {{itc}}</a></li>
+
+
+
+                        <div class="dropdown">
+                            <button class="dropbtn">category</button>
+                            <div class="dropdown-content">
+                                <a href="/">All</a>
+                                {% for i in ct %}
+                                <a href="{{i.get_url}}">{{i.name}}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <ul>
+
+                        </ul>
+                        </li>
+
+
+                    </ul>
+                    </li>
+
+                    </ul>
+                    <!-- ################################################################################################ -->
+                </nav>
+        </header>
+    </div>
+    <div class="wrapper row0">
+        <div id="topbar" class="hoc clear">
+            <div class="fl_left">
+
+                <!-- ################################################################################################ -->
+                <ul class="nospace">
+
+                </ul>
+                <!-- ################################################################################################ -->
+            </div>
+            <div class="fl_right">
+                <!-- ################################################################################################ -->
+                <ul class="nospace">
+
+
+                    <li id="searchform">
+                        <div>
+                            <form action="{% url 'search' %}" method="GET">
+
+                                <fieldset>
+                                    <legend>Quick Search:</legend>
+                                    <input type="text" placeholder="Enter search product" name="q">
+                                    <button type="submit"><i class="fas fa-search"></i></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                <!-- ################################################################################################ -->
+            </div>
+        </div>
+    </div>
+    <div id="pageintro" class="hoc clear">
+        <!-- ################################################################################################ -->
+        <article>
+            <h1>AMAYAS</h1><br>
+            <h4 class="heading">BUY more with less</h4>
+            <p>ORDER ALL YOUR ESSENTIALS NOW!</p>
+            <footer>
+                <ul class="nospace inline pushright">
+                    <li><a class="btn inverse" href="{% url 'gallery' %}">GALLERY</a></li>
+                    <li><a class="btn inverse" href="{% url 'cartdetails' %}">CART</a></li>
+                </ul>
+            </footer>
+        </article>
+        <!-- ################################################################################################ -->
+    </div>
+    <!-- ################################################################################################ -->
+</div>
+<!-- End Top Background Image Wrapper -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+
+<div class="wrapper row3">
+    <main class="hoc container clear">
+        <!-- main body -->
+        <!-- ################################################################################################ -->
+
+        <section id="introblocks">
+            <ul class="nospace group btmspace-80">
+                {% for i in pg.object_list %}
+                <li class="one_third">
+                    <figure><a class="" href="{{i.get_url}}"><img src="{{i.img.url}}" alt=""
+                                                                  style="height: 220px;width:320px;"></a>
+                        <figcaption>
+                            <h6 class="heading">{{i.name}}</h6>
+                            <p>{{i.desc|truncatechars:10}}</p>
+                            <p>price: {{i.price}} rs</p>
+                            <!--               <p>stock: {{i.stock}} </p>-->
+
+                        </figcaption>
+                    </figure>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <center>
+            {% for p in pg.paginator.page_range %}
+            <a href="?page={{p}}" class="btn btn-light btn-sm {% if pg.number == p %} active {% endif %}">{{p}}</a>
+            {% endfor %}
+        </center>
+        <!-- ################################################################################################ -->
+
+        <!-- ################################################################################################ -->
+
+
+    </main>
+</div>
+
+
+<a id="backtotop" href="#top"><i class="fas fa-chevron-up"></i></a>
+<!-- JAVASCRIPTS -->
+<script src="{% static 'hs/layout/scripts/jquery.min.js' %}"></script>
+<script src="{% static 'hs/layout/scripts/jquery.backtotop.js' %}"></script>
+<script src="{% static 'hs/layout/scripts/jquery.mobilemenu.js' %}"></script>
+</body>
+</html>
+{% endblock %}

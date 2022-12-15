@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="">
+<head>
+<title>AMAYAS</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="{% static 'hs/layout/styles/layout.css' %}" rel="stylesheet" type="text/css" media="all">
+<style>
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  z-index:10;
+
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+</style>
+</head>
+<body id="top">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- Top Background Image Wrapper -->
+ <div style="background-color:black" class="wrapper row1" >
+    <header id="header" class="hoc clear">
+      <div  id="logo" class="fl_left">
+        <!-- ################################################################################################ -->
+        <h1 ><a href="/">amayas</a></h1>
+        <!-- ################################################################################################ -->
+      </div>
+      <nav  id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <nav id="mainav" class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="clear">
+          <li ><a href="/">Home</a></li>
+
+              <li><a href="{% url 'cartdetails' %}"><i style="font-size:24px" class="fa">&#xf07a;</i>&nbsp;{{itc}}</a></li>
+
+              <li><a href="{% url 'login' %}">Login</a></li>
+              <li><a href="{% url 'register' %}">Register</a></li>
+
+
+          </li>
+
+
+
+
+            <ul>
+
+            </ul>
+          </li>
+
+
+
+            </ul>
+          </li>
+
+        </ul>
+        <!-- ################################################################################################ -->
+      </nav>
+    </header>
+  </div>
+
+  <!-- ################################################################################################ -->
+  <div class="wrapper row0">
+    <div id="topbar" class="hoc clear">
+      <div class="fl_left">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+      <div class="fl_right">
+        <!-- ################################################################################################ -->
+        <ul class="nospace">
+
+
+
+          <li id="searchform">
+            <div>
+              <form action="#" method="post">
+
+                <fieldset>
+                  <legend>Quick Search:</legend>
+                  <input type="text" placeholder="Enter search term&hellip;">
+                  <button type="submit"><i class="fas fa-search"></i></button>
+                </fieldset>
+              </form>
+            </div>
+          </li>
+        </ul>
+        <!-- ################################################################################################ -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+  <!-- ################################################################################################ -->
+
+
+
+{% block content %}
+{% endblock %}
+</body>
+</html>
